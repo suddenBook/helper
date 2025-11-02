@@ -42,7 +42,7 @@ jobs:
         run: |
           chmod +x gradlew
           echo 'org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=1024m' >> gradle.properties
-          ./gradlew publishToMavenLocal --no-daemon -x sign
+          ./gradlew publishToMavenLocal --no-daemon -x signHelperKtxPublication
 
       - name: Upload Maven Repository Artifact
         uses: actions/upload-artifact@v4
