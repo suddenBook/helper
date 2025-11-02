@@ -27,7 +27,7 @@ jobs:
           cd api
           chmod +x gradlew
           echo 'org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=1024m' >> gradle.properties
-          ./gradlew publishToMavenLocal --no-daemon -x sign
+          ./gradlew publishToMavenLocal --no-daemon
           cd ..
           echo "'api' dependency built successfully."
 
