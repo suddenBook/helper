@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout 'helper' repository
@@ -26,7 +26,8 @@ jobs:
           git clone https://github.com/libxposed/api.git
           cd api
           chmod +x gradlew
-          ./gradlew publishToMavenLocal
+          echo 'org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=1024m' >> gradle.properties
+          ./gradlew publishToMavenLocal --no-daemon
           cd ..
           echo "'api' dependency built successfully."
 
@@ -40,7 +41,8 @@ jobs:
       - name: Build 'helper' library (with JDK 17)
         run: |
           chmod +x gradlew
-          ./gradlew publishToMavenLocal
+          echo 'org.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=1024m' >> gradle.properties
+          ./gradlew publishToMavenLocal --no-daemon
 
       - name: Upload Maven Repository Artifact
         uses: actions/upload-artifact@v4
